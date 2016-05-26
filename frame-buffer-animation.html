@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>链式运动JS</title>
+    <style>
+    div {
+        width: 200px;
+        height: 100px;
+        background-color: #40C1AC;
+        margin: 20px;
+        border: 5px solid #a00;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+        font-size: 20px;
+        margin:20px;
+    }
+    </style>
+    <script type="text/javascript" src="move.js"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+        	var iBox = document.getElementById('box');
+            var aBox = document.getElementById('box1')
+
+        	//链式运动
+        	iBox.onmouseover = function(){
+        		iMove(this,{width:400},function(){
+        	        setTimeout(function(){
+        		        iMove(iBox,{height:200},function(){
+        		        	setTimeout(function(){
+        		        		iMove(iBox,{opacity:30})
+        		        	},10)
+        		        })
+        	        },10)
+        		})
+        	}
+        	iBox.onmouseout = function(){
+        		iMove(this,{opacity:100},function(){
+        	        setTimeout(function(){
+        		        iMove(iBox,{height:100},function(){
+        		        	setTimeout(function(){
+        		        		iMove(iBox,{width:200})
+        		        	},10)
+        		        })
+        	        },10)
+        		})
+        	}
+
+        	//同时运动
+        	aBox.onmouseover = function(){
+        		iMove(aBox,{width:400,height:200,opacity:30});
+        	}
+        	aBox.onmouseout = function(){
+        		iMove(aBox,{width:200,height:100,opacity:100});
+        	}
+        	
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        链式运动
+    </div>
+    <div id="box1">
+        同时运动
+    </div>
+</body>
+
+</html>
